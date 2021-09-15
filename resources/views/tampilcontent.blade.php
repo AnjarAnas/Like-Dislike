@@ -42,14 +42,7 @@
                                     }
                                 @endphp
                                 <a href="/dislike/{{$c->id}}">Dislike</a>
-                                @php
-                                    $like=\App\Models\Dislike::where('content_id',$c->id)->get();
-                                    if ($like->isEmpty()) {
-                                        
-                                    }else {
-                                        echo $c->dislike->dislike;
-                                    }
-                                @endphp
+                                
                             </div>
                         </div>
                     

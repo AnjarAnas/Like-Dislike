@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LikeController::class,'index']);
+
 Route::get('/like/{id}',[LikeController::class,'like']);
 Route::get('/dislike/{id}',[LikeController::class,'dislike']);
+Route::get('login',[LoginController::class,'login'])->name('login');
+Route::post('login-proses',[LoginController::class,'loginProses']);
+
+Route::group(['middleware'=>['auth','role:1']],function(){
+    Route::get('/', [LikeController::class,'index']);
+    Route::get('/home', [LoginController::class,'index']);
+    
+});
+Route::group(['middleware'=>['auth','role:2']],function(){
+    Route::get('/user', function(){
+        return view('logout');
+    });
+   
+});
+Route::group(['middleware'=>['auth','role:2,1']],function(){
+    Route::get('/logout', [LoginController::class,'logout']);
+   
+});
