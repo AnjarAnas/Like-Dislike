@@ -23,7 +23,10 @@ Route::post('login-proses',[LoginController::class,'loginProses']);
 
 Route::group(['middleware'=>['auth','role:1']],function(){
     Route::get('/', [LikeController::class,'index']);
-    Route::get('/home', [LoginController::class,'index']);
+    Route::get('/add/artikel', [LikeController::class,'addArtikel']);
+    Route::post('/home', [LoginController::class,'index']);
+    Route::post('/add', [LikeController::class,'add']);
+
     
 });
 Route::group(['middleware'=>['auth','role:2']],function(){
