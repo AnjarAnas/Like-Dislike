@@ -45,7 +45,7 @@
                                         
                                     </div>
                                 </div>
-                                @if ($c->view)
+                            @if($c->view)
                                 {{$c->view->count()." Views"}}<br>
                                 @endif
                                 <hr>

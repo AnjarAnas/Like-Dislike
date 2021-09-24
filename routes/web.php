@@ -29,7 +29,7 @@ Route::group(['middleware'=>['auth','role:1']],function(){
     Route::get('/add/artikel', [LikeController::class,'addArtikel']);
     Route::post('/home', [LoginController::class,'index']);
     Route::post('/add', [LikeController::class,'add']);
-
+    Route::get('/vote/{id}/{content_id}',[LikeController::class,'vote']);
     
 });
 Route::group(['middleware'=>['auth','role:2']],function(){

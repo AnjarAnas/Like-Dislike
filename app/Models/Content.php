@@ -21,4 +21,7 @@ class Content extends Model
     public function view(){
         return $this->hasMany(View::class);
     }
+    public function answer(){
+        return $this->hasMany(Answer::class);
+    }
 }
