@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageCompress;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,11 @@ Route::get('/like/{id}',[LikeController::class,'like']);
 Route::get('/dislike/{id}',[LikeController::class,'dislike']);
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('login-proses',[LoginController::class,'loginProses']);
-
+Route::get('compress',[ImageCompress::class,'index']);
+Route::post('compress/act',[ImageCompress::class,'com']);
 Route::group(['middleware'=>['auth','role:1']],function(){
     Route::get('/', [LikeController::class,'index']);
+    Route::get('/detail/{id}',[LikeController::class,'detail']);
     Route::get('/add/artikel', [LikeController::class,'addArtikel']);
     Route::post('/home', [LoginController::class,'index']);
     Route::post('/add', [LikeController::class,'add']);

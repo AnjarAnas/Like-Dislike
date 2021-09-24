@@ -18,4 +18,7 @@ class Content extends Model
     public function artikeltag(){
         return $this->hasMany(ArtikelTags::class);
     }
+    public function view(){
+        return $this->hasMany(View::class);
+    }
 }

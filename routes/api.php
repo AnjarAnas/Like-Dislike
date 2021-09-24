@@ -22,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('like/{id}',[APILikeController::class,'like']);
 Route::get('dislike/{id}',[APILikeController::class,'dislike']);
+Route::post('post',[APILikeController::class,'post']);
+

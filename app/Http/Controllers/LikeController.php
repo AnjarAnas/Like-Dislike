@@ -7,10 +7,15 @@ use App\Models\Content;
 use App\Models\Dislike;
 use App\Models\Like;
 use App\Models\tags;
+use App\Models\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class LikeController extends Controller
 {
     public function index(){
+        // $getContent=Content::where('id',$id)->first();
+        // $jumlahView=;
         $content=Content::with('artikeltag')->get();
         //dd($content)
         // dd($content);
@@ -73,6 +78,18 @@ class LikeController extends Controller
             }
         }
         
+    }
+    public function detail($id)
+    {
+        View::create([
+            'user_id'=>Auth::user()->id,
+            'content_id'=>$id
+        ]);
+        
+        $getContent=Content::where('id',$id)->first();
+        $jumlahView=$getContent->view;
+        
+        return view('detail',['content'=>$getContent,'jumlah'=>$jumlahView]);
     }
     
 }

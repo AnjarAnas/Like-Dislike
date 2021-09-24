@@ -44,4 +44,7 @@ class APILikeController extends Controller
             
         } 
     }
+    public function post(Request $req){
+        return response()->json(['data'=>$req->all()]);
+    }
 }

@@ -30,7 +30,8 @@
                     <a href="/add/artikel" class="btn btn-success m-3">Tambah Artikel</a>
                     @foreach ($content as $c)
                    
-                        <div class="card">
+                    <div class="card">
+                        <a href="detail/{{$c->id}}" style="text-decoration: none; color:black">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -44,6 +45,10 @@
                                         
                                     </div>
                                 </div>
+                                @if ($c->view)
+                                {{$c->view->count()." Views"}}<br>
+                                @endif
+                                <hr>
                                 {{$c->judul}}<br>
                                 {{$c->body}}<br>
                                 <a href="/like/{{$c->id}}" class="m-3">Like</a>@php
@@ -57,8 +62,9 @@
                                 <a href="/dislike/{{$c->id}}">Dislike</a>
                                 
                             </div>
-                        </div>
-                    
+                        </a>
+                    </div>
+                   
                     @endforeach
                 </div>
             </div>
