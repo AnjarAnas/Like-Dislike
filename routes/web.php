@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImageCompress;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,15 +31,15 @@ Route::group(['middleware'=>['auth','role:1']],function(){
     Route::post('/home', [LoginController::class,'index']);
     Route::post('/add', [LikeController::class,'add']);
     Route::get('/vote/{id}/{content_id}',[LikeController::class,'vote']);
-    
+    Route::get('/menu',[MenuController::class,'index']);
+    Route::get('/add/prive', [MenuController::class,'addPrive']);
+    Route::post('/add_prive', [MenuController::class,'addPriveAdd']);
 });
 Route::group(['middleware'=>['auth','role:2']],function(){
     Route::get('/user', function(){
         return view('logout');
     });
-   
 });
 Route::group(['middleware'=>['auth','role:2,1']],function(){
     Route::get('/logout', [LoginController::class,'logout']);
-   
 });
